@@ -17,8 +17,10 @@ public class Main {
         pila2.push(1);
         pila2.push(2);
         pila2.push(3);
-        System.out.println(pila2.pop());
-        System.out.println(pila2.pop());
-        System.out.println(pila2.pop());
+        pila2.push(4);
+        System.out.println(pila2.peek());
+        System.out.println(pila2.peek());
+        System.out.println(pila2.peek());
+        System.out.println("size "+pila2.size());
     }
 }

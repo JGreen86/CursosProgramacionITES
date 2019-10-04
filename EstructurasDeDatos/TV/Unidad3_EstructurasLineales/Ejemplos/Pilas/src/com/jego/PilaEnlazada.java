@@ -6,18 +6,14 @@ public class PilaEnlazada<T> extends PilaAbstracta {
 
     @Override
     void push(Object e) {
-        if (size == 0) {
-            tope = new Nodo(e, null);
-            size++;
-        } else {
-            Nodo n = new Nodo(e,tope);
-            tope = n;
-            size++;
-        }
+        Nodo n = new Nodo(e,tope);
+        tope = n;
+        size++;
     }
 
     @Override
     Object pop() {
+        if (tope == null || size == 0) return null;
         T t = (T) tope.getDato();
         tope = tope.getSiguiente();
         size--;
@@ -26,16 +22,18 @@ public class PilaEnlazada<T> extends PilaAbstracta {
 
     @Override
     Object peek() {
-        return null;
+        if (tope == null || size == 0) return null;
+        return tope.getDato();
     }
 
     @Override
     int size() {
-        return 0;
+        return size;
     }
 
     @Override
     boolean isEmpty() {
+        if (size<=0) return true;
         return false;
     }
 
