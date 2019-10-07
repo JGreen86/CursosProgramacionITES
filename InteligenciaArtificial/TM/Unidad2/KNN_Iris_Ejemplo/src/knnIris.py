@@ -15,7 +15,7 @@ iris_Y_test = iris_Y[indices[-45:]]
 
 # KNN
 from sklearn.neighbors import KNeighborsClassifier
-knn = KNeighborsClassifier(n_neighbors=1)
+knn = KNeighborsClassifier(n_neighbors=7)
 knn.fit(iris_X_train, iris_Y_train)
 
 output = knn.predict(iris_X_test)
