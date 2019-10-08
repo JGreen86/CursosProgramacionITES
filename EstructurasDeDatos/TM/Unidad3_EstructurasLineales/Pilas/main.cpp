@@ -7,26 +7,26 @@ struct nodo {
 };
 struct nodo *tope;
 
-void push(int v) {
+void push(struct nodo **pila, int v) {
   struct nodo *nuevo = new(struct nodo);
   nuevo->dato = v;
-  nuevo->siguiente = tope;
-  tope = nuevo;
+  nuevo->siguiente = *pila;
+  *pila = nuevo;
 }
-int pop() {
-  int v = tope->dato;
-  tope = tope->siguiente;
+int pop(struct nodo **pila) {
+  int v = (*pila)->dato;
+  *pila = (*pila)->siguiente;
   return v;
 }
 
 int main() {
   tope = NULL;
-  push(3);
-  push(1);
-  push(2);
+  push(&tope,3);
+  push(&tope,2);
+  push(&tope,1);
 
-  cout<<pop()<<endl;
-  cout<<pop()<<endl;
-  cout<<pop()<<endl;
+  cout<<pop(&tope)<<endl;
+  cout<<pop(&tope)<<endl;
+  cout<<pop(&tope)<<endl;
   return 0;
 }
