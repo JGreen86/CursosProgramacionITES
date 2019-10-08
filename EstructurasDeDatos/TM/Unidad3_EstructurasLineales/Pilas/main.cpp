@@ -6,7 +6,6 @@ struct nodo {
   struct nodo *siguiente;
 };
 struct nodo *tope;
-
 void push(struct nodo **pila, int v) {
   struct nodo *nuevo = new(struct nodo);
   nuevo->dato = v;
@@ -18,7 +17,6 @@ int pop(struct nodo **pila) {
   *pila = (*pila)->siguiente;
   return v;
 }
-
 int main() {
   tope = NULL;
   push(&tope,3);
