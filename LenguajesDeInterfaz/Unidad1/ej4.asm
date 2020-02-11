@@ -5,12 +5,19 @@ section .data
 	msj2 db "5678",10
 	len2 equ $-msj2
 section .bss
+	msj3 resb 9
 	global main
 section .text
 main:
-	; msj2 = msj1
-	mov rax,[msj1]
-	mov [msj2],rax
+	; mover "1234"
+	mov eax,[msj1]
+	mov [msj3],eax
+	; mover "5678"
+	mov eax,[msj2]
+	mov [msj3 + 4],eax
+	; agregar salto de linea
+	mov ah,[msj2 + 4]
+	mov [msj3 + 8],ah
 	;Imprimir msj1
 	mov rax,4
 	mov rbx,1
@@ -22,6 +29,12 @@ main:
 	mov rbx,1
 	mov rcx,msj2
 	mov rdx,len2
+	int 80h
+	; Imprimir msj3
+	mov rax,4
+	mov rbx,1
+	mov rcx,msj3
+	mov rdx,9
 	int 80h
 	; Salir del programa
 	mov rax,1

@@ -1,15 +1,15 @@
 ;;;;Modos de direccionamiento;;;;;
 section .data
-	msj1 db "1234",10
+	msj1 db "1234567",10
 	len1 equ $-msj1
-	msj2 db "5678",10
+	msj2 db "9876543",10
 	len2 equ $-msj2
 section .bss
 	global main
 section .text
 main:
 	; msj2 = msj1
-	mov rax,[msj1]
+	mov rax,[msj1 + 5]
 	mov [msj2],rax
 	;Imprimir msj1
 	mov rax,4
