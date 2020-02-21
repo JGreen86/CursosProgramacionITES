@@ -1,18 +1,13 @@
+import sys
 import matplotlib.pyplot as plt
 
-def fx(x):
-    return x**10 - 1
-def fx2(x):
-    return (-0.5*x**2)+(2.5*x)+4.5
-
-z = 0.5
-def generarGrafica(xi, xs, d, z):
+def generarGrafica(fx, xi, xs, d):
     Lx = []
     Ly = []
     Ly2 = []
     x = xi
     while(x <= xs):
-        y = fx2(x)
+        y = eval(fx) # fx2(x)
         Lx.append(x)
         Ly.append(y)
         Ly2.append(0)
@@ -20,17 +15,18 @@ def generarGrafica(xi, xs, d, z):
     plt.plot(Lx,Ly,Lx,Ly2)
     plt.show()
 
-generarGrafica(5,10,0.01,z)
 
-def biseccion(xi, xs, es):
+def biseccion(fx, xi, xs, es):
     xr = 0
-    fxi = fx2(xi)
+    x = xi
+    fxi = eval(fx)  # fx2(xi)
     while True:
         xrAnt = xr
         xr = (xi + xs) / 2.0
         #fxi = fx(xi)
         #fxs = fx(xs)
-        fxr = fx2(xr)
+        x = xr
+        fxr = eval(fx) # fx2(xr)
         c = fxi * fxr
         if(c < 0):
             xs = xr
@@ -44,6 +40,18 @@ def biseccion(xi, xs, es):
             break
     return xr
 
-raiz = biseccion(5,10,0.001)
+if(len(sys.argv) < 5):
+    print("Error!!! parametros insuficientes.")
+    print("Ejecutar: python biseccion2.py fx xi xs es")
+    sys.exit()
+
+fx = sys.argv[1]
+xi = float(sys.argv[2])
+xs = float(sys.argv[3])
+es = float(sys.argv[4])
+#fx = "-0.5*x**2 + 2.5*x + 4.5"
+generarGrafica(fx,xi,xs,0.01)
+raiz = biseccion(fx, xi, xs,es)
 print("raiz = " + str(raiz))
-print("f("+str(raiz)+") = "+str(fx2(raiz)))
+x = raiz
+print("f("+str(raiz)+") = "+str(eval(fx)))
